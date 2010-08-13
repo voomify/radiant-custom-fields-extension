@@ -7,8 +7,8 @@ class CustomField < ActiveRecord::Base
   validates_presence_of       :page_id
   
   def self.find_assignable_custom_fields(page_id)
-    all = find(:all, :group => "name").map(&:name)
-    assigned = find(:all, :conditions => {:page_id => page_id}, :group => "name").map(&:name)
+    all = find(:all).map(&:name)
+    assigned = find(:all, :conditions => {:page_id => page_id}).map(&:name)
     all - assigned
   end
 end
